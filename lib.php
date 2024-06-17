@@ -50,12 +50,15 @@ function inscricao_update_password($userdata) {
 }
 
 /**
- * Creates or updates the 'auth_emailconfirmed' user preference for the specified user ID.
+ * Creates or updates 'auth_emailconfirmed' and 'auth_forcepasswordchange' user preference for the specified user ID.
  *
  * @param int $userid The ID of the user.
  */
 function inscricao_create_user_preference($userid) {
     global $DB;
+    if ($DB->record_exists('user_preferences', ['userid' => $userid, 'name' => 'auth_forcepasswordchange'])) {
+        $DB->set_field('user_preferences', 'value', '0', ['userid' => $userid, 'name' => 'auth_forcepasswordchange']);
+    }
     if ($DB->record_exists('user_preferences', ['userid' => $userid, 'name' => 'auth_emailconfirmed'])) {
         $DB->set_field('user_preferences', 'value', '1', ['userid' => $userid, 'name' => 'auth_emailconfirmed']);
     } else {
