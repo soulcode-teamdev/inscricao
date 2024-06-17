@@ -46,13 +46,13 @@ class form extends \moodleform {
         $mform->addElement('hidden', 'email', '');
         $mform->setType('email', PARAM_EMAIL);
 
-        $mform->addElement('password', 'password', get_string('password', 'local_inscricao'));
+        $mform->addElement('password', 'password', get_string('password', 'local_inscricao'), ['class' => 'form-group-inscricao']);
         $mform->setType('password', PARAM_RAW);
 
-        $mform->addElement('password', 'confirmpassword', get_string('confirmpassword', 'local_inscricao'));
+        $mform->addElement('password', 'confirmpassword', get_string('confirmpassword', 'local_inscricao'), ['class' => 'form-group-inscricao']);
         $mform->setType('confirmpassword', PARAM_RAW);
 
-        $mform->addElement('submit', 'submitmessage', get_string('submit'));
+        $mform->addElement('submit', 'submitmessage', get_string('submit'), ['class' => 'flex-column']);
     }
 
     /**
