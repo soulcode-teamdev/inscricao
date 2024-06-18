@@ -38,6 +38,14 @@ function inscricao_update_password($userdata) {
 
     $user = $DB->get_record('user', ['email' => $userdata->email]);
 
+    if (!$user) {
+        throw new Exception('E-email não encontrado.');
+    }
+
+    if ($user->firstaccess != '0') {
+        throw new Exception('Usuário já realizou a troca de senha.');
+    }
+
     try {
         update_internal_user_password($user, $userdata->password);
         inscricao_create_user_preference($user->id);
